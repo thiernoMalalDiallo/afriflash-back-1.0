@@ -1,0 +1,205 @@
+But : Ce fichier à pour objectif de renseigner l'ensemble des urls, parametres, resultat de toutes les requêtes
+
+
+VALEURS DES CHAMPS :
+    Role - collection LOGIN :
+        CLIENT
+        MANAGER
+        ADMIN
+        INTERVENANT
+        COMMERCIAL
+
+    isSubscribe - collection CLIENT :
+        NOUVEAU
+        EN COURS
+        ABONNEE
+        RESILIEE 
+
+    stateOfSubscription - collection SubscribeModel
+        EN COURS
+        VALIDER
+        EN COURS DE RESILIATION
+        RESILIEE
+
+    statePayment - collection SubscribeModel
+        PAYE
+        IMPAYE
+
+    stateOfIncident - collection Incidents
+        EN ATTENTE
+        EN COURS
+        TRAITER
+        CLOTURER
+
+Enregistrement d'un pays :
+    url : localhost/pays/save
+    params :
+            { "codePays": "GN",
+              "nomPays": "GUINNEE",
+              }
+    result : retourne l'objet enregistrer
+
+
+ Enregistrement d'un region :
+     url : http://localhost:3001/region/save/
+     params :
+             {
+                "regionName": "Conakry",
+                 "zipCode": "67000",
+                "countryCode":"5e6fa972205e9411f4b8eb5b"
+             }
+     result : retourne l'objet enregistrer
+
+ Enregistrement d'une commune :
+     url : http://localhost:3001/commune/save/
+     params :
+             {
+                "nameOfTown": "Dixinn",
+                "zipCode": "67000",
+                "regionCode":"5e6faa13205e9411f4b8eb5c"
+             }
+     result : retourne l'objet enregistrer
+
+  Enregistrement d'un quartier :
+      url : http://localhost:3001/quartier/save/
+      params :
+              {
+                 "nameOfDistrict": "Dixinn",
+                 "townCode":"5e6fb0fff3150f4188010154"
+              }
+      result : retourne l'objet enregistrer
+
+
+ Enregistrement d'un secteur :
+     url : http://localhost:3001/secteur/save/
+     params :
+             {
+                "nameOfSector": "Dixinn port",
+                "districtCode":"5e6fb1e5f3150f4188010155"
+             }
+     result : retourne l'objet enregistrer
+
+
+
+ modification  de l'adresse d'un client :
+     url : http://localhost:3001/user/client/update_adress/5e63fa5809f5185a309adedf/
+     params :
+            {
+              "nameOfHome": "Maison5",
+              "secteurCode": "5e6fb1e5f3150f4188010155"
+            }
+     result : retourne l'objet homeUser qui est la liaison entre home et user.
+
+
+Inscription d'un administrateur
+     url: http://localhost:3001/user/employe/admin/save
+     result: la liste de tous les utilisateurs
+
+
+Liste de tous les utilisateurs:
+        url: http://localhost:3001/user/
+         params :
+                    {
+                      "firtName": "diallo",
+                      "lastName": "moussa",
+                      "genderOfUser":"Masculin",
+                      "email": "diallo@yahoo.com",
+                      "password": "toto",
+                      "phoneNumber":"08976898"
+                    }
+        result: l'ojet enregistrer
+
+La maison d'un client:
+          url:http://localhost:3001/user/client/home_by_user/5e63fa5809f5185a309adedf/
+        result: retourne la maisoon du client
+                 {
+                 "objectId": "5e6ffdf7ef2cf930944605ad",
+                 "nameOfHome": "Maison 5",
+                 "sectorCode": "5e6fb1e5f3150f4188010155"
+                 }
+
+
+
+retourner l'utilisateur en fonction de son login
+      url:http://localhost:3001/login/user_loged/5e72a9735b4f1d51400fb5b3
+      resultat: retourn l'utilisateur qui a login
+      {
+      "objectId": "5e72a9715b4f1d51400fb5b2",
+      "firstName": "BALDE",
+      "lastName": "Malal",
+      "phoneNumber": "08976898987",
+      "email": "balde@yahoo.com",
+      "password": "MfemXjFVhqwZi9eYtmKc5JA9CJlHbVdBqfMuLlIbamY=",
+      "dateOfCreation": "2020-03-18T23:06:25.140Z"
+      }
+
+Connexion :
+    url :
+    params :
+    result :
+
+
+Commentaire (Avis):
+    url: http://localhost:3001/comment/save
+    params:
+          {
+            "authorCode": "5e73eeced08de95d60f242a0",
+            "message": "Oui, AfriClean est une entreprise qui participe l'amélioration de l'image de notre environnement"
+          }
+    resultat: il retourn le resultat suivant
+           {
+               "dateComment": "2020-03-26T22:37:18.291Z",
+               "message": "Oui, AfriClean est une entreprise qui participe l'amélioration de l'image de notre environnement",
+               "authorCode": "5e73eeced08de95d60f242a0",
+               "objectId": "5e7d2e9e6716b5443c1de82b"
+           }
+Liste de maison d'un utilisateur:
+          url: http://localhost:3001/user/client/home-by-user/5e73eeced08de95d60f242a0
+          resultat:
+             [
+                 {
+                     "objectId": "5e7cd9b39fe57a57ece275ec",
+                     "nameOfHome": "maison thierno",
+                     "sectorCode": "5e6fb322cc817b0930affab2"
+                 },
+                 {
+                     "objectId": "5e7cda4d9fe57a57ece275ee",
+                     "nameOfHome": "Mamadou bah maison",
+                     "sectorCode": "5e6fb322cc817b0930affab2"
+                 }
+             ]
+
+Confirmation de la résilliation d'un abonnement
+            url: http://localhost:3001/resiliation/confirm
+            params:
+                 {
+                 "clientCode": "5e73eeced08de95d60f242a0",
+                  "homeCode": "5e7ff4ca721a370f442902ea"
+                              }
+
+Annulation de la résilliation d'un abonnement
+            url: http://localhost:3001/resiliation/cancel
+            params:
+                 {
+                 "clientCode": "5e73eeced08de95d60f242a0",
+                  "homeCode": "5e7ff4ca721a370f442902ea"
+                              }
+
+
+
+
+ Modification d'un address
+             url: http://localhost:3001/user/update-adress
+             params:
+                 {
+                 	"homeCode": "5e861d3a52f3fc2d28db6e47",
+                     "nameOfHome": "Maison de mr SOW",
+                     "sectorCode": "5e6fb322cc817b0930affab2"
+                              }
+             resultat: retourn la nouvelle adresse
+                     {
+                         "objectId": "5e861d3a52f3fc2d28db6e47",
+                         "nameOfHome": "Maison de mr SOW",
+                         "sectorCode": "5e6fb322cc817b0930affab2"
+                     }
+
